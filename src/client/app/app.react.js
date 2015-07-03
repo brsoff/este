@@ -1,20 +1,11 @@
 import './app.styl';
 import * as state from '../state';
 import Component from '../components/component.react';
-import Footer from './footer.react';
-import Menu from './menu.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
 
-// Remember to import all app stores here.
-import '../auth/store';
-import '../examples/store';
-import '../todos/store';
-import '../users/store';
-
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = this.getState();
@@ -22,12 +13,7 @@ class App extends Component {
 
   getState() {
     return {
-      auth: state.authCursor(),
-      examples: state.examplesCursor(),
-      pendingActions: state.pendingActionsCursor(),
-      todos: state.todosCursor(),
-      users: state.usersCursor(),
-      viewer: state.usersCursor().get('viewer')
+      // cursors here
     };
   }
 
@@ -43,9 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        <Menu viewer={this.state.viewer} />
         <RouteHandler {...this.state} />
-        <Footer />
       </div>
     );
   }
